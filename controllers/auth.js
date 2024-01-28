@@ -1,5 +1,9 @@
+const UserModel = require('../models/User');
+const { StatusCodes } = require('http-status-codes');
+
 const register = async (req, res) => {
-    return res.send('Register User');
+    const user = await UserModel.create({ ...req.body });
+    return res.status(StatusCodes.CREATED).json({ user });
 };
 
 const login = async (req, res) => {
