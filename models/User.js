@@ -33,4 +33,19 @@ UserSchema.pre('save', async function (next) {
     next();
 });
 
+//Schema Instances
+UserSchema.methods.getName = function () {
+    return this.name;
+};
+
+const jwt = require('jsonwebtoken');
+//get token using instance methods
+UserSchema.methods.createJWT = function () {
+    return jwt.sign(
+        { userId: this._id, name: this.name },
+        process.env.JWT_SECRET,
+        { expiresIn: '30d' }
+    );
+};
+
 module.exports = mongoose.model('User', UserSchema);
