@@ -1,0 +1,81 @@
+<div class="p-6">
+    <h2 class="text-xl font-semibold mb-4"><%= title %></h2>
+    <form hx-<%="method" %>
+        ="<%= action %>" hx-target="#job-modal-container" hx-swap="outerHTML">
+        <% if (job && job.id) { %>
+        <input type="hidden" name="id" value="<%= job.id %>" />
+        <% } %>
+        <div class="mb-4">
+            <label
+                for="title"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Title:</label
+            >
+            <input
+                type="text"
+                id="title"
+                name="title"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value="<%= job ? job.title : '' %>"
+                required />
+        </div>
+        <div class="mb-4">
+            <label
+                for="company"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Company:</label
+            >
+            <input
+                type="text"
+                id="company"
+                name="company"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value="<%= job ? job.company : '' %>"
+                required />
+        </div>
+        <div class="mb-4">
+            <label
+                for="location"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Location:</label
+            >
+            <input
+                type="text"
+                id="location"
+                name="location"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value="<%= job ? job.location : '' %>"
+                required />
+        </div>
+        <div class="mb-4">
+            <label
+                for="description"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Description:</label
+            >
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required>
+<%= job ? job.description : '' %></textarea
+            >
+        </div>
+        <div class="flex justify-end">
+            <button
+                type="button"
+                hx-get="/"
+                hx-target="#job-modal-container"
+                hx-swap="outerHTML"
+                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                Cancel
+            </button>
+            <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <%= submitButtonText %>
+            </button>
+        </div>
+    </form>
+</div>
